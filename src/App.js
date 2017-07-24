@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import Shelves from './Shelves'
 import Search from './Search'
 
-import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class BooksApp extends Component {
