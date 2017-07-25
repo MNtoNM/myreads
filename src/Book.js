@@ -12,12 +12,12 @@ class Book extends Component {
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
                 <option value="read">Done Reading</option>
-                <option value="none">None</option>
+                <option selected='selected' value="none">None</option>
               </select>
             </div>
           </div>
         <div className="book-title">{this.props.title}</div>
-        <div className="book-authors">{this.props.author[0]}</div>
+        <div className="book-authors">{this.props.author && this.props.author[0]}</div>
       </div>
     )
   }
