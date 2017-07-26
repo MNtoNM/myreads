@@ -45,14 +45,18 @@ class Search extends Component {
                   onChange={(event) => this.updateQuery(event.target.value)}
                 />
 
-
             </div>
           </div>
           <div className="search-books-results">
             <ol className="books-grid">
               {this.state.results.map((book) => (
                 <li key={book.id}>
-                  <Book title={book.title} author={book.authors} cover={book.imageLinks.thumbnail} />
+                  <Book
+                    title={book.title}
+                    author={book.authors}
+                    cover={book.imageLinks.thumbnail}
+                    onChange={(event) => this.props.onChange(event)}
+                  />
                 </li>
               ))}
             </ol>

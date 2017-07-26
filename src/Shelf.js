@@ -10,7 +10,7 @@ class Shelf extends Component {
           <div className="bookshelf-books">
             <ol className="books-grid">
               <li>
-                <Book />
+                Book component passed here
               </li>
               <li>
                 <Book />

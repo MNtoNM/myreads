@@ -7,9 +7,13 @@ import Search from './Search'
 import './App.css'
 
 class BooksApp extends Component {
-  state = {}
+  state = {
+    books: []
+  }
 
-
+  onChange = (event) => {
+    debugger
+  }
 
   render() {
     return (
@@ -32,7 +36,7 @@ class BooksApp extends Component {
         )}/>
 
         <Route path='/search' render={() => (
-          <Search />
+          <Search onChange={this.onChange}/>
         )}/>
 
       </div>
