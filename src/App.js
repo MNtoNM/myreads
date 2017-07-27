@@ -9,26 +9,24 @@ import './App.css'
 class BooksApp extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       books: []
-    }
-  }
-
+    };
+  };
 
   onChange = (event, book) => {
+      // set book's shelf to selected value
+      book.shelf = event.target.value
 
-    this.setState({
-      books: this.state.books.concat([
-        {
-          title: book.title,
-          author: book.authors[0],
-          cover: book.imageLinks.thumbnail,
-          shelf: event.target.value
-        }
-      ])
-    })
-    console.log(this.state.books)
-  }
+      // use async setState. https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
+      this.setState(state => ({
+        // first, filter out the book from our existing list
+        // next, concat the book (with updated shelf) to our array
+        books: state.books.filter(b => b.id !== book.id).concat([book])
+      }))
+      console.log(this.state.books)
+    }
 
   render() {
     return (
@@ -39,7 +37,7 @@ class BooksApp extends Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-            <Shelves />
+            <Shelves books={this.state.books} />
             <div className="open-search">
               <Link
                 to='/search'

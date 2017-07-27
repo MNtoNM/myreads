@@ -11,7 +11,7 @@ class Search extends Component {
 
   updateQuery = (query) => {
     this.setState({ query })
-    BooksAPI.search(query, 5).then((results) => {
+    BooksAPI.search(query, 20).then((results) => {
       this.setState({ results })
       console.log(results)
     })
