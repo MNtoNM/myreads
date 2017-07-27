@@ -7,12 +7,27 @@ import Search from './Search'
 import './App.css'
 
 class BooksApp extends Component {
-  state = {
-    books: []
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: []
+    }
   }
 
+
   onChange = (event, book) => {
-    debugger
+
+    this.setState({
+      books: this.state.books.concat([
+        {
+          title: book.title,
+          author: book.authors[0],
+          cover: book.imageLinks.thumbnail,
+          shelf: event.target.value
+        }
+      ])
+    })
+    console.log(this.state.books)
   }
 
   render() {
