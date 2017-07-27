@@ -11,7 +11,7 @@ class BooksApp extends Component {
     books: []
   }
 
-  onChange = (event) => {
+  onChange = (event, book) => {
     debugger
   }
 

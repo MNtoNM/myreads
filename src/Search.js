@@ -52,10 +52,11 @@ class Search extends Component {
               {this.state.results.map((book) => (
                 <li key={book.id}>
                   <Book
+                    id={book.id}
                     title={book.title}
                     author={book.authors}
                     cover={book.imageLinks.thumbnail}
-                    onChange={(event) => this.props.onChange(event)}
+                    onChange={(event, book) => this.props.onChange(event, book)}
                   />
                 </li>
               ))}
