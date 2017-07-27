@@ -3,6 +3,7 @@ import { Route } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import Shelves from './Shelves'
 import Search from './Search'
+import * as BooksAPI from './BooksAPI'
 
 import './App.css'
 
@@ -15,17 +16,19 @@ class BooksApp extends Component {
     };
   };
 
+  componentDidMount = () => {
+    BooksAPI.getAll().then(books => this.setState({ books }))
+  }
+
   onChange = (event, book) => {
       // set book's shelf to selected value
       book.shelf = event.target.value
 
-      // use async setState. https://facebook.github.io/react/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous
       this.setState(state => ({
         // first, filter out the book from our existing list
         // next, concat the book (with updated shelf) to our array
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }))
-      console.log(this.state.books)
     }
 
   render() {

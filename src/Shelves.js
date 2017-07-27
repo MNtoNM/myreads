@@ -3,19 +3,11 @@ import Shelf from './Shelf'
 
 class Shelves extends Component {
   render() {
-    console.log(this.props.books)
-
-    let current = (this.props.books && this.props.books.filter((book) => book.shelf === 'currentlyReading'))
-
-    let want = []
-
-    let read = []
-
     return (
       <div>
-        <div><Shelf name='Currently Reading' shelfContents={current} /></div>
-        <div><Shelf name='Want to Read' shelfContents={want} /></div>
-        <div><Shelf name='Done Reading' shelfContents={read} /></div>
+        <Shelf name='Currently Reading' shelfContents={this.props.books.filter(b => b.shelf === 'currentlyReading')} />
+        <Shelf name='Want to Read' shelfContents={this.props.books.filter(b => b.shelf === 'wantToRead')} />
+        <Shelf name='Done Reading' shelfContents={this.props.books.filter(b => b.shelf === 'read')} />
       </div>
     )
   }
