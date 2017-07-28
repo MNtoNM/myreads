@@ -20,11 +20,11 @@ class BooksApp extends Component {
     BooksAPI.getAll().then(books => this.setState({ books }))
   }
 
-  onChange = (event, book) => {
+  onChange = (shelf, book) => {
     BooksAPI.update(book, event.target.value).then(response => {
       // existing logic
       // set book's shelf to selected value
-      book.shelf = event.target.value
+      book.shelf = shelf
 
       this.setState(state => ({
         // first, filter out the book from our existing list
