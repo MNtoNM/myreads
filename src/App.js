@@ -21,7 +21,7 @@ class BooksApp extends Component {
   }
 
   onChange = (shelf, book) => {
-    BooksAPI.update(book, event.target.value).then(response => {
+    BooksAPI.update(book, shelf).then(response => {
       // existing logic
       // set book's shelf to selected value
       book.shelf = shelf

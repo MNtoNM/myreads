@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import Book from './Book'
+import DebounceInput from 'react-debounce-input';
 
 class Search extends Component {
   state = {
@@ -11,10 +12,12 @@ class Search extends Component {
 
   updateQuery = (query) => {
     this.setState({ query })
-    BooksAPI.search(query, 20).then((results) => {
-      this.setState({ results })
-      console.log(results)
+    if (query !== '') {
+      BooksAPI.search(query, 20).then((results) => {
+        this.setState({ results })
     })
+
+    }
   }
 
   render () {
@@ -38,7 +41,9 @@ class Search extends Component {
                 you don't find a specific author or title. Every search is limited by search terms.
               */}
 
-                <input
+                <DebounceInput
+                  minLength={2}
+                  debounceTimeout={1000}
                   type="text"
                   placeholder="Search by title or author"
                   value={this.state.query}
