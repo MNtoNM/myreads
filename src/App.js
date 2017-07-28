@@ -21,6 +21,8 @@ class BooksApp extends Component {
   }
 
   onChange = (event, book) => {
+    BooksAPI.update(book, event.target.value).then(response => {
+      // existing logic
       // set book's shelf to selected value
       book.shelf = event.target.value
 
@@ -29,8 +31,8 @@ class BooksApp extends Component {
         // next, concat the book (with updated shelf) to our array
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }))
-      BooksAPI.update(book).then(book => this.setState({ book: event.target.value }))
-    }
+    })
+  }
 
   render() {
     return (
@@ -41,7 +43,10 @@ class BooksApp extends Component {
             <div className="list-books-title">
               <h1>MyReads</h1>
             </div>
-            <Shelves books={this.state.books} />
+            <Shelves
+              books={this.state.books}
+              onChange={this.onChange}
+            />
             <div className="open-search">
               <Link
                 to='/search'
