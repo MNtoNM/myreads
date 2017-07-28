@@ -29,6 +29,7 @@ class BooksApp extends Component {
         // next, concat the book (with updated shelf) to our array
         books: state.books.filter(b => b.id !== book.id).concat([book])
       }))
+      BooksAPI.update(book).then(book => this.setState({ book: event.target.value }))
     }
 
   render() {
